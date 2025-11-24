@@ -25,6 +25,12 @@ CREATE TABLE IF NOT EXISTS products (
 );
 `);
 
+app.get("/", (req, res) => {
+  res.json({ message: "API de Produtos com SQLite", status: 'ok' });
+});
+
+
+
 app.get("/products", (req, res) => {
   const stmt = db.prepare("SELECT * FROM products");
   const rows = stmt.all();
@@ -113,9 +119,9 @@ app.delete("/products/:id", (req, res) => {
 
 const PORT = 8000;
 
-export default app 
+// export default app 
 
 
-//app.listen(PORT, () => {
-  //console.log(`Servidor rodando com SQLite em http://localhost:${PORT}`);
-//});
+app.listen(PORT, () => {
+  console.log(`Servidor rodando com SQLite em http://localhost:${PORT}`);
+});
