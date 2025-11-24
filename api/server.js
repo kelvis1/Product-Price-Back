@@ -3,11 +3,17 @@ import cors from "cors";
 import Database from "better-sqlite3";
 import { nanoid } from "nanoid";
 
+import path from "path"; 
+import os from "os";
+
+const tmpDir = os.tmpdir();
+const dbPath = path.join(tmpDir, "database.db");
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = new Database("database.db");
+const db = new Database(dbPath);
 
 db.exec(`
 CREATE TABLE IF NOT EXISTS products (
@@ -107,6 +113,9 @@ app.delete("/products/:id", (req, res) => {
 
 const PORT = 8000;
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando com SQLite em http://localhost:${PORT}`);
-});
+export default app 
+
+
+//app.listen(PORT, () => {
+  //console.log(`Servidor rodando com SQLite em http://localhost:${PORT}`);
+//});
