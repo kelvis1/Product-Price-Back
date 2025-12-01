@@ -117,15 +117,10 @@ app.delete("/products/:id", (req, res) => {
   res.json({ message: "Produto removido" });
 });
 
-const port = 3000; // You can change this to any port you prefer
-
-
-// export default app 
-
+const port = 3000;
 
 app.listen(port, () => {
   console.log("Server is running");
 });
 
-//////////// Export app defaultly ///////////////////////////
 export default app;
